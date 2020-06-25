@@ -37,17 +37,19 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var MainController = /** @class */ (function () {
     function MainController() {
+        this.credentials = new Array();
     }
     MainController.prototype.putCredential = function (req, res) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                return [2 /*return*/];
-            });
-        });
+        console.log("on PUT /credential");
+        res.json({ message: 'received' });
+        console.log(req.body);
+        console.log("Endof body");
     };
     MainController.prototype.postMessage = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
+                console.log("on POST /message");
+                res.json({ message: 'received' });
                 return [2 /*return*/];
             });
         });
@@ -55,6 +57,8 @@ var MainController = /** @class */ (function () {
     MainController.prototype.getMessageByID = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
+                console.log("on GET /message/" + req.params.id);
+                res.json({ message: 'received' });
                 return [2 /*return*/];
             });
         });
@@ -62,6 +66,8 @@ var MainController = /** @class */ (function () {
     MainController.prototype.getMessagesByTag = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
+                console.log("on GET /messages/" + req.params.tag);
+                res.json({ message: 'received' });
                 return [2 /*return*/];
             });
         });

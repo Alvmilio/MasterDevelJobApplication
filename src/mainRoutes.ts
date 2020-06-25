@@ -1,6 +1,6 @@
 import {Router} from 'express';
 import {mainController} from './mainController';
-class mainRoutes
+class MainRoutes
 {
 
     public router : Router;
@@ -20,3 +20,5 @@ class mainRoutes
     }
 
 }
+
+export const mainRoutes = new MainRoutes().router;
