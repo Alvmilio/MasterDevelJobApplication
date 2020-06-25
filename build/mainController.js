@@ -39,6 +39,9 @@ var data_1 = require("./data");
 var data_2 = require("./data");
 var data_3 = require("./data");
 var data_4 = require("./data");
+var data_5 = require("./data");
+var data_6 = require("./data");
+var data_7 = require("./data");
 var MainController = /** @class */ (function () {
     function MainController() {
         this.credentials = new Array();
@@ -46,7 +49,7 @@ var MainController = /** @class */ (function () {
     MainController.prototype.putCredential = function (req, res) {
         console.log("on PUT /credential");
         console.log(req.body);
-        if (data_2.keyAlreadyExists(req.body.key))
+        if (data_3.keyAlreadyExists(req.body.key))
             res.status(403).send('Key already exists');
         else {
             data_1.credentials.push({ key: req.body.key,
@@ -64,24 +67,57 @@ var MainController = /** @class */ (function () {
         console.log("XKey header content ->" + req.headers.xkey);
         console.log("XRoute header content ->" + req.headers.xroute);
         console.log("XSignature header content ->" + req.headers.xsignature);
-        console.log("Current message ID ->" + data_3.getNewMessageID());
-        res.send("hola");
-        data_4.isValidSignature(req.headers.xkey, req.body, req.params, req.headers.xroute, req.headers.xsignature);
+        //res.send("hola");
+        var retVal = data_5.isValidSignature(req.headers.xkey, req.body, req.params, req.headers.xroute, req.headers.xsignature);
+        if (!retVal)
+            res.status(401).send("Invalid credentials! please try again");
+        else {
+            //res.status(201).send();
+            var tagsArray = req.body.tags.split(",");
+            console.log(tagsArray);
+            var newMsgID = data_4.getNewMessageID();
+            data_2.messages.push({ id: newMsgID, msg: req.body.msg, tags: tagsArray });
+            console.log(data_2.messages);
+            //res.status(201).send("Inserted id !"+newMsgID); since im getting problems while trying to retrieve the inserted ID as message, i'll send it as status code
+            //res.status(204).send();
+            res.json({ message: newMsgID });
+        }
     };
     MainController.prototype.getMessageByID = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
+            var retVal, message;
             return __generator(this, function (_a) {
                 console.log("on GET /message/" + req.params.id);
-                res.json({ message: 'received' });
+                retVal = data_5.isValidSignature(req.headers.xkey, req.body, req.params, req.headers.xroute, req.headers.xsignature);
+                if (!retVal)
+                    res.status(401).send("Invalid credentials! please try again");
+                else {
+                    message = data_6.getMessageByID(+req.params.id);
+                    //res.status(201).send("Inserted id !"+newMsgID); since im getting problems while trying to retrieve the inserted ID as message, i'll send it as status code
+                    //res.status(204).send();
+                    res.json({ message: message.msg });
+                }
                 return [2 /*return*/];
             });
         });
     };
     MainController.prototype.getMessagesByTag = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
+            var retVal, fetchedMessages, messageToReturn, i;
             return __generator(this, function (_a) {
                 console.log("on GET /messages/" + req.params.tag);
-                res.json({ message: 'received' });
+                retVal = data_5.isValidSignature(req.headers.xkey, req.body, req.params, req.headers.xroute, req.headers.xsignature);
+                if (!retVal)
+                    res.status(401).send("Invalid credentials! please try again");
+                else {
+                    fetchedMessages = data_7.getMessagesByTag(req.params.tag);
+                    messageToReturn = "";
+                    for (i = 0; i < fetchedMessages.length; i++) {
+                        messageToReturn += fetchedMessages[i];
+                        messageToReturn = i + 1 == fetchedMessages.length ? messageToReturn : messageToReturn += ", ";
+                    }
+                    res.json({ message: messageToReturn });
+                }
                 return [2 /*return*/];
             });
         });
