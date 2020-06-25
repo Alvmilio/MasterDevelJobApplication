@@ -13,7 +13,7 @@ Informacion
 <li> Una vez descrompromido, dirigirse a la carpeta /build</li>
 <li> Ejecutar el comando "node index.js", si da problema ejecutar el comando "npm install" y despues "node index.js" nuevamente   </li>
 <li> Asegurarse de que el puerto 3000 este disponible, para que levante el servidor </li>
-<li> Descargar el proyecto de java, este es el cliente </li>
+<li> Descargar el proyecto de java del siguiente repositorio https://github.com/Alvmilio/MasterDevel-ApiClient, este es el cliente desarrollado para consumir la API </li>
 <li> Dirigirse a la carpeta /dist y ejecutar desde esa carpeta el archivo ApliClient.java </li>
 <li> Una vez abierto, y con el servidor corriendo se pondrá proceder a realizar un ciclo de ejecucion normal </li>
 <li> PORFAVOR, al momento de ingresar el header X-Route ingresarlo como dice el dialogo de informacion que aparece al dar click al boton de alguna peticion </li>
