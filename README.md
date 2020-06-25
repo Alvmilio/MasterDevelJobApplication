@@ -16,7 +16,14 @@ Informacion
 <li> Descargar el proyecto de java del siguiente repositorio https://github.com/Alvmilio/MasterDevel-ApiClient, este es el cliente desarrollado para consumir la API </li>
 <li> Dirigirse a la carpeta /dist y ejecutar desde esa carpeta el archivo ApiClient.java </li>
 <li> Una vez abierto, y con el servidor corriendo se pondrá proceder a realizar un ciclo de ejecucion normal </li>
-<li> PORFAVOR, al momento de ingresar el header X-Route ingresarlo como dice el dialogo de informacion que aparece al dar click al boton de alguna peticion </li>
+<li> PORFAVOR, al momento de ingresar el header X-Route ingresarlo como dice el dialogo de informacion que aparece al dar click al boton de alguna peticion 
+    Las siguiente son las opciones disponibles a ingresar
+    <ul>
+      <li>/message  </li>
+      <li>/message/<id> </li>
+      <li>/messages/<tag> </li>
+  </ul>
+  </li>
 <li> En el repositorio del proyecto java se encontrara un archivo con casos de prueba utilizados durante las pruebas, con sus entradas respectivas </li>
 <li> Al momento de su ejecucion se recomienda ir leyendo las salidas en la consola del servidor, pues ahi encontrará mas informacion </li>
 
