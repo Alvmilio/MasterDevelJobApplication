@@ -11,7 +11,7 @@ Informacion
 <ul>
 <li> Descargar el proyecto como archivo zip</li>
 <li> Una vez descrompromido, dirigirse a la carpeta /build</li>
-<li> Ejecutar el comando node index.js   </li>
+<li> Ejecutar el comando "node index.js", si da problema ejecutar el comando "npm install" y despues "node index.js" nuevamente   </li>
 <li> Asegurarse de que el puerto 3000 este disponible, para que levante el servidor </li>
 <li> Descargar el proyecto de java, este es el cliente </li>
 <li> Dirigirse a la carpeta /dist y ejecutar desde esa carpeta el archivo ApliClient.java </li>
