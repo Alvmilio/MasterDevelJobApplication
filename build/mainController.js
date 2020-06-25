@@ -35,15 +35,24 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var data_1 = require("./data");
+var data_2 = require("./data");
 var MainController = /** @class */ (function () {
     function MainController() {
         this.credentials = new Array();
     }
     MainController.prototype.putCredential = function (req, res) {
         console.log("on PUT /credential");
-        res.json({ message: 'received' });
-        console.log(req.body);
-        console.log("Endof body");
+        if (data_2.keyAlreadyExists(req.body.key))
+            res.status(403).send('Key already exists');
+        else {
+            data_1.credentials.push({ key: req.body.key,
+                shared_secret: req.body.shared_secret
+            });
+            console.log("New credential stored");
+            console.log(data_1.credentials);
+            res.status(204).send("New credential stored!");
+        }
     };
     MainController.prototype.postMessage = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {

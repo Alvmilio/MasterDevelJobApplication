@@ -1,21 +1,32 @@
 import {Response, Request} from 'express';
 import {credentials} from './data';
 import {messages} from './data';
+import {keyAlreadyExists} from './data';
 
 class MainController
 {
     credentials : Array<any> = new Array();
+    constructor(){}
 
 
     putCredential(req : Request, res : Response)
     {
         console.log("on PUT /credential");
-        res.json({message:'received'});
-        console.log(req.body);
-        console.log("Endof body");
-
+        if(keyAlreadyExists(req.body.key))
+            res.status(403).send('Key already exists');
+        else
+        {
+            credentials.push({  key: req.body.key,
+                                shared_secret: req.body.shared_secret
+                            });
+            console.log("New credential stored");
+            console.log(credentials);
+            res.status(204).send("New credential stored!")
+        }
         
     }
+
+
 
     async postMessage(req : Request, res : Response) : Promise<void>
     {
