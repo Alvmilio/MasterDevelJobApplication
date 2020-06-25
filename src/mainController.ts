@@ -2,6 +2,8 @@ import {Response, Request} from 'express';
 import {credentials} from './data';
 import {messages} from './data';
 import {keyAlreadyExists} from './data';
+import {getNewMessageID} from './data';
+import {isValidSignature } from './data';
 
 class MainController
 {
@@ -12,6 +14,8 @@ class MainController
     putCredential(req : Request, res : Response)
     {
         console.log("on PUT /credential");
+        console.log(req.body);
+        
         if(keyAlreadyExists(req.body.key))
             res.status(403).send('Key already exists');
         else
@@ -23,15 +27,22 @@ class MainController
             console.log(credentials);
             res.status(204).send("New credential stored!")
         }
+        console.log("------------------");
         
     }
 
 
 
-    async postMessage(req : Request, res : Response) : Promise<void>
+    postMessage(req : Request, res : Response)
     {
         console.log("on POST /message");
-        res.json({message:'received'});
+        console.log(req.body);
+        console.log("XKey header content ->"+req.headers.xkey);
+        console.log("XRoute header content ->"+req.headers.xroute);
+        console.log("XSignature header content ->"+req.headers.xsignature);
+        console.log("Current message ID ->"+getNewMessageID());
+        res.send("hola");
+        isValidSignature(req.headers.xkey, req.body, req.params, req.headers.xroute, req.headers.xsignature);
     }
 
     async getMessageByID(req : Request, res : Response) : Promise<void>

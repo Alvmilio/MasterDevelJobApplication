@@ -37,12 +37,15 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var data_1 = require("./data");
 var data_2 = require("./data");
+var data_3 = require("./data");
+var data_4 = require("./data");
 var MainController = /** @class */ (function () {
     function MainController() {
         this.credentials = new Array();
     }
     MainController.prototype.putCredential = function (req, res) {
         console.log("on PUT /credential");
+        console.log(req.body);
         if (data_2.keyAlreadyExists(req.body.key))
             res.status(403).send('Key already exists');
         else {
@@ -53,15 +56,17 @@ var MainController = /** @class */ (function () {
             console.log(data_1.credentials);
             res.status(204).send("New credential stored!");
         }
+        console.log("------------------");
     };
     MainController.prototype.postMessage = function (req, res) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                console.log("on POST /message");
-                res.json({ message: 'received' });
-                return [2 /*return*/];
-            });
-        });
+        console.log("on POST /message");
+        console.log(req.body);
+        console.log("XKey header content ->" + req.headers.xkey);
+        console.log("XRoute header content ->" + req.headers.xroute);
+        console.log("XSignature header content ->" + req.headers.xsignature);
+        console.log("Current message ID ->" + data_3.getNewMessageID());
+        res.send("hola");
+        data_4.isValidSignature(req.headers.xkey, req.body, req.params, req.headers.xroute, req.headers.xsignature);
     };
     MainController.prototype.getMessageByID = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
