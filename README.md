@@ -20,8 +20,8 @@ Informacion
     Las siguiente son las opciones disponibles a ingresar
     <ul>
       <li>/message  </li>
-      <li>/message/<id> </li>
-      <li>/messages/<tag> </li>
+      <li>/message/&ltid&gt </li>
+      <li>/messages/&lttag&gt </li>
   </ul>
   </li>
 <li> En el repositorio del proyecto java se encontrara un archivo con casos de prueba utilizados durante las pruebas, con sus entradas respectivas </li>
