@@ -17,6 +17,7 @@ Informacion
 <li> Dirigirse a la carpeta /dist y ejecutar desde esa carpeta el archivo ApiClient.java </li>
 <li> Una vez abierto, y con el servidor corriendo se pondrá proceder a realizar un ciclo de ejecucion normal </li>
 <li> PORFAVOR, al momento de ingresar el header X-Route ingresarlo como dice el dialogo de informacion que aparece al dar click al boton de alguna peticion 
+    <br>
     Las siguiente son las opciones disponibles a ingresar
     <ul>
       <li>/message  </li>
