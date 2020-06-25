@@ -1,0 +1,23 @@
+{
+  "name": "masterdevel-jobapp",
+  "version": "1.0.0",
+  "description": "job app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alvmilio/MasterDevelJobApplication.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Alvmilio/MasterDevelJobApplication/issues"
+  },
+  "homepage": "https://github.com/Alvmilio/MasterDevelJobApplication#readme",
+  "dependencies": {
+    "@types/express": "^4.17.6",
+    "express": "^4.17.1"
+  }
+}
