@@ -18,7 +18,9 @@ Informacion
 <li> Una vez abierto, y con el servidor corriendo se pondrá proceder a realizar un ciclo de ejecucion normal </li>
 <li> PORFAVOR, al momento de ingresar el header X-Route ingresarlo como dice el dialogo de informacion que aparece al dar click al boton de alguna peticion 
     <br>
-    Las siguiente son las opciones disponibles a ingresar
+    <br>
+    <br>
+    Las siguiente son las opciones disponibles a ingresar (Sin cambiar el contenido dentro de < >, esas palabras reservadas deben ir
     <ul>
       <li>/message  </li>
       <li>/message/&ltid&gt </li>
