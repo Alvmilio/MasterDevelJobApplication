@@ -53,60 +53,13 @@ function isValidSignature(key, requestBody, requestParams, xrouteHeader, receive
         console.log('Si son iguales!!');
         return true;
     }
-    else
+    else {
         console.log('No son iguales');
-    return false;
-    /*if(xrouteHeader == '/message')
-    {
-        let correctHash = getCorrectHashForPostMessageRoute(key, requestBody, requestParams, xrouteHeader);
-        console.log("CorrectHash -> "+correctHash);
-        console.log("ReceivedHash -> "+receivedSignature);
-        if(correctHash == receivedSignature)
-        {
-            console.log('Si son iguales!!');
-            return true;
-        }
-        else
-            console.log('No son iguales');
-        return false;
+        console.log("XSignature -> " + receivedSignature + " VS CorrectHash -> " + correctHash);
     }
-    else if(xrouteHeader == '/message/<id>')
-    {
-        let correctHash = getCorrectHashForGetMessageRoute(key, requestParams, xrouteHeader);
-        
-    }
-    else{
-
-    }*/
     return false;
 }
 exports.isValidSignature = isValidSignature;
-function getCorrectHashForPostMessageRoute(key, requestBody, requestParams, xrouteHeader) {
-    var tuples = [];
-    tuples.push('msg:' + requestBody.msg);
-    tuples.push('tags:' + requestBody.tags);
-    tuples.push('X-Route:' + xrouteHeader);
-    console.log(tuples);
-    tuples.sort();
-    console.log("Sorted");
-    console.log(tuples);
-    var finalString = "";
-    for (var i = 0; i < tuples.length; i++) {
-        finalString += tuples[i];
-        finalString = i + 1 == tuples.length ? finalString : finalString += ";";
-    }
-    console.log(finalString);
-    var credentialToUse = null;
-    credentialToUse = getCredential(key);
-    console.log(credentialToUse);
-    console.log("CredentialKey ->" + credentialToUse.key);
-    var crypto = require('crypto');
-    var hmac = crypto.createHmac('sha256', credentialToUse.shared_secret);
-    hmac.update(finalString);
-    var hashVal = hmac.digest('hex');
-    console.log("Final->" + hashVal);
-    return hashVal;
-}
 function getCorrectHash(key, requestBody, requestParams, xrouteHeader) {
     var tuples = [];
     if (xrouteHeader == '/message') {
@@ -130,15 +83,15 @@ function getCorrectHash(key, requestBody, requestParams, xrouteHeader) {
         finalString += tuples[i];
         finalString = i + 1 == tuples.length ? finalString : finalString += ";";
     }
-    console.log(finalString);
+    console.log("StringToHash->" + finalString);
     var credentialToUse = null;
     credentialToUse = getCredential(key);
-    console.log(credentialToUse);
-    console.log("CredentialKey ->" + credentialToUse.key);
+    //console.log(credentialToUse);
+    //console.log("CredentialKey ->"+credentialToUse.key);
     var crypto = require('crypto');
     var hmac = crypto.createHmac('sha256', credentialToUse.shared_secret);
     hmac.update(finalString);
     var hashVal = hmac.digest('hex');
-    console.log("Final->" + hashVal);
+    console.log("HashedString->" + hashVal);
     return hashVal;
 }

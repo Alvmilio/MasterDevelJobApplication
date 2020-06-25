@@ -16,17 +16,20 @@ class MainController
     putCredential(req : Request, res : Response)
     {
         console.log("on PUT /credential");
-        console.log(req.body);
+        //console.log(req.body);
         
         if(keyAlreadyExists(req.body.key))
+        {
+            console.log("Key already exists");
             res.status(403).send('Key already exists');
+        }
         else
         {
             credentials.push({  key: req.body.key,
                                 shared_secret: req.body.shared_secret
                             });
             console.log("New credential stored");
-            console.log(credentials);
+            //console.log(credentials);
             res.status(204).send("New credential stored!")
         }
         console.log("------------------");
@@ -54,9 +57,7 @@ class MainController
             console.log(tagsArray);
             let newMsgID = getNewMessageID();
             messages.push({id:newMsgID, msg: req.body.msg, tags: tagsArray});
-            console.log(messages);
-            //res.status(201).send("Inserted id !"+newMsgID); since im getting problems while trying to retrieve the inserted ID as message, i'll send it as status code
-            //res.status(204).send();
+            //console.log(messages);
             res.json({message:newMsgID});
         }
     }
